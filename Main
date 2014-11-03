@@ -5,14 +5,14 @@
 #define CORES 6
 
 int main () {
-	
-	int tab[TAM][TAM];
-	
-	int i = 0, j = 0;
-	
-	tabuleiro(i, j, tab);
-	
-	imprime(i, j, tab);
-	
-	return 0;
+
+int tab[TAM][TAM];
+
+Param valor = {0 , 0};
+
+tabuleiro(valor, tab);
+
+imprime(valor, tab);
+
+return 0;
 }
