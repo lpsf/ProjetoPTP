@@ -1,0 +1,20 @@
+void tabuleiro (Param valores, int v[TAM][TAM]) {
+srand( (unsigned)time(NULL) );
+for(valores.i = 0; valores.i < TAM; valores.i++) {
+for(valores.j = 0; valores.j < TAM; valores.j++) {
+v[valores.i][valores.j] = rand() % COR;
+}
+}
+//generates random numbers in the [0,5] interval and sets them to each position in the matrix
+}
+
+
+void imprime (Param valores, int v[TAM][TAM]) {
+for(valores.i = 0; valores.i < TAM; valores.i++) {
+for(valores.j = 0; valores.j < TAM; valores.j++) {
+printf("%i ", v[valores.i][valores.j]);
+}
+printf("\n");
+}
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its form
+}
