@@ -3,8 +3,8 @@ ProjetoPTP
 Project started 13.10.2014
 ==========
 
-Initial grid test 27.10.2014
+27.10.2014
 
-Joint effort
+Generated grid with random numbers in the [0,5] interval
 
 ==========
