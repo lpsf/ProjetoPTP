@@ -1,0 +1,13 @@
+void tabuleiro (int i, int j, int v[TAM][TAM]) {
+
+	srand( (unsigned)time(NULL) );
+
+	for(i = 0; i < TAM; i++) {
+		for(j = 0; j < TAM; j++) {
+			v[i][j] = rand() % COR;
+		}
+	}
+	
+//generates random numbers in the [0,5] interval and sets them to each position in the matrix
+
+}
