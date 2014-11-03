@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "lista.h"
+
 #define TAM 14
 #define CORES 6
 
@@ -15,4 +17,5 @@ tabuleiro(valor, tab);
 imprime(valor, tab);
 
 return 0;
+
 }
