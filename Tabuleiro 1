@@ -1,0 +1,40 @@
+#include <stdio.h>
+//#include <stdilib.h>
+//#include <time.h>
+
+#define TAM 14
+
+void imprime (int i, int c, int v[TAM][TAM]) {
+
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its form 
+
+for(i = 0; i < TAM; i++) {
+		for(c = 0; c < TAM; c++) {
+				
+				printf("%i ", v[i][c]);
+			}
+			
+			printf("\n");
+		}
+	}
+
+
+int main () {
+
+	int tab[TAM][TAM];
+	
+	int c, i;
+	
+	for(i = 0; i < TAM; i++) {
+		for(c = 0; c < TAM; c++) {
+				
+				tab[i][c] = c;
+			}
+		}
+		
+	imprime(i, c, tab);
+	
+	return 0;
+}
+		
+	
