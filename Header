@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+typedef struct {
+int i;
+int j;
+} Param;
+
+void tabuleiro (Param valores, int v[TAM][TAM]);
+
+void imprime (Param valores, int v[TAM][TAM]);
