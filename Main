@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define TAM 14
+#define CORES 6
+
+int main () {
+	
+	int tab[TAM][TAM];
+	
+	int i = 0, j = 0;
+	
+	tabuleiro(i, j, tab);
+	
+	imprime(i, j, tab);
+	
+	return 0;
+}
