@@ -1,53 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 #define TAM 14
+#define CORES 6
 
+void tabuleiro (int i, int j, int v[TAM][TAM]) {
 
-void  tabuleiro (int i, int j, int c, int v[TAM][TAM]) {
-	
 	srand( (unsigned)time(NULL) );
-	
-	
+
 	for(i = 0; i < TAM; i++) {
 		for(j = 0; j < TAM; j++) {
-					
-					v[i][j] = rand() % 6;
-					
-			}
+			v[i][j] = rand() % CORES;
 		}
-		
-	//generates random numbers in the [0,5] interval and sets them to each position in the matrix
-}
+	}
+	
+//generates random numbers in the [0,5] interval and sets them to each position in the matrix
 
+}
 
 void imprime (int i, int j, int v[TAM][TAM]) {
 
-//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its form 
 
-for(i = 0; i < TAM; i++) {
+
+	for(i = 0; i < TAM; i++) {
 		for(j = 0; j < TAM; j++) {
-				
-				printf("%i ", v[i][j]);
-			}
-			
-			printf("\n");
+			printf("%i ", v[i][j]);
 		}
+	printf("\n");
+	}
 }
 
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its form
 
 int main () {
-
-	int tab[TAM][TAM];
-	int c = 0, i = 0, j = 0;
 	
-	 
-    tabuleiro(i, j, c, tab);    
+	int tab[TAM][TAM];
+	
+	int i = 0, j = 0;
+	
+	tabuleiro(i, j, tab);
 	
 	imprime(i, j, tab);
 	
 	return 0;
 }
-		
-	
