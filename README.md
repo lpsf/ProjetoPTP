@@ -33,5 +33,7 @@ Together
 
 Presented initial interface for evaluation, started creating code for user input
 
+Created code for linear update of the game board, still trying to work out recurssive aspect and diagonal updating
+
 Together
 
