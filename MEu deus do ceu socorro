@@ -9,12 +9,14 @@ typedef struct {
 	
 	int i;
 	int j;
+	char comando;
 	int tab[TAM][TAM];
 	
-} Param;
+} Jogo;
 
-void tabuleiro (Param a) {
-
+Jogo novoTabuleiro() {
+	Jogo a = { 0, 0, 0 };
+	
 	srand( (unsigned)time(NULL) );
 
 	for(a.i = 0; a.i < TAM; a.i++) {
@@ -22,16 +24,21 @@ void tabuleiro (Param a) {
 			a.tab[a.i][a.j] = rand() % COR;
 		}
 	}
+	return a;
 	
 //generates random numbers in the [0,5] interval and sets them to each position in the matrix
 
 }
 
-void imprime (Param a) {
+void imprime (Jogo a) {
 
+	printf("\t\t\t*=*=*=*=*FLOOD IT!*=*=*=*=*\n\n");
 
 
 	for(a.i = 0; a.i < TAM; a.i++) {
+		
+		printf("\t\t\t");
+		
 		for(a.j = 0; a.j < TAM; a.j++) {
 			printf("%i ", a.tab[a.i][a.j]);
 		}
@@ -39,14 +46,25 @@ void imprime (Param a) {
 	}
 }
 
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
 
-//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its form
+
+/*void jogador (Jogo a) {
+		
+	scanf("\n%c", &a.comando);
+	
+	int x = 0, y = 0;
+	
+	if(a.tab[x][y] != a.tab[x-1][y-1]) 	
+	
+	//testa a linha toda e a coluna toda contanto que a anterior tenha passado no teste
+}*/
+
+
 
 int main () {
 	
-	Param valor = {0 , 0};	
-	
-	tabuleiro(valor, tab);
+	Jogo dados = novoTabuleiro();
 	
 	/*typedef enum {
 		VERMELHO,
@@ -57,7 +75,12 @@ int main () {
 		ROXO
 	};*/
 		
-	imprime(valor, tab);
+	imprime(dados);
+	
+	printf("\n\t\t\tDigite um número de 0 a 5\n");
+		
+	jogador(dados);
+	
 	
 	return 0;
 }
