@@ -5,7 +5,7 @@ Project started 13.10.2014
 
 27.10.2014
 
-Generated grid with random numbers between 0 and 5.
+Generated grid with random numbers between 0 and 5
 
 Took code for random number generator from http://goo.gl/FeA7Zd
 
@@ -27,4 +27,11 @@ Tweaked with the code to optimize performance
 
 Together
 
+=========
+
+04.11.2014
+
+Presented initial interface for evaluation, started creating code for user input
+
+Together
 
