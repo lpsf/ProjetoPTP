@@ -11,6 +11,7 @@ typedef struct {
 	int j;
 	int comando;
 	int contador;
+	int l;
 	int tab[TAM][TAM];
 	
 } Jogo;
@@ -50,61 +51,81 @@ void imprime (Jogo a) {
 //prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
 
 
-Jogo jogada (Jogo b, Jogo c) {
-		
-	int l = 1;
+
+Jogo jogada (Jogo c) {
 	
 	
-	if(c.tab[0][0] == c.tab[0][l]) {
+	
+	printf("\n\t\t\t Digite um valor de 0 a 5\n");
+	
+	scanf("%i", &c.comando);
+	
+	//recebe o valor a ser aplicado no elemento do ponto inicial
+
+	if(c.tab[0][0] != c.tab[c.i][c.j]) {
+	
+	for(c.l = 1; c.l <= TAM; c.l++) {
+	
+		if(c.tab[0][0] == c.tab[0][c.l]) {
 		
-		c.tab[0][l] = b.comando;
-		
-		l++;		
+			c.tab[0][c.l] = c.comando;
+			
+		}
+	
 	}
 	
-	l = 1;
+	//testa todos os elementos a direita do ponto inicial
 	
-	if(c.tab[0][0] == c.tab[l][0]) {
+	
+	
+	for(c.l = 1; c.l <= TAM; c.l++) {
+	
+		if(c.tab[0][0] == c.tab[c.l][0]) {
 		
-		c.tab[l][0] = b.comando;
-		
-		l++;		
+		c.tab[c.l][0] = c.comando;
+				
+		}
 	}
 	
-	c.tab[0][0] = b.comando;
+	//teste todos os elementos abaixo do ponto inicial
 	
-	;
-		
 	return c;
+	
+	//retorna a nova matriz
+}
+	
+	c.tab[0][0] = c.comando;
+	
+	//altera o valor do ponto inicial apos fazer os testes
+	
+	c.tab[c.i][c.j] = c.tab[c.i+1][c.j+1]
+	
+	jogada (tabela);
+	
+	
+	
+	
+		
 	
 }	
 	//testa a linha toda e a coluna toda contanto que a anterior tenha passado no teste
 
-
+   
 
 
 int main () {
 	
 	Jogo tabela = novoTabuleiro();
 	
-	Jogo geral = {0, 0, 0, 0};
-	
 	
 	imprime(tabela);
 	
-	
-	while(geral.contador <= 25) {
+	Jogo novo = jogada(tabela);		
 		
-	printf("\n\t\t\tDigite um número de 0 a 5\n");
-		
-	scanf("\n%i", &geral.comando);
-	
-	Jogo novo = jogada(geral, tabela);
-	
 	imprime(novo);
 	
-	geral.contador++;
-	}
+	
+
 	
 	return 0;
 }
