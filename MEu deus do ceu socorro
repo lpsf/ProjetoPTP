@@ -9,13 +9,14 @@ typedef struct {
 	
 	int i;
 	int j;
-	char comando;
+	int comando;
+	int contador;
 	int tab[TAM][TAM];
 	
 } Jogo;
 
 Jogo novoTabuleiro() {
-	Jogo a = { 0, 0, 0 };
+	Jogo a = {0, 0, 0, 0};
 	
 	srand( (unsigned)time(NULL) );
 
@@ -49,38 +50,61 @@ void imprime (Jogo a) {
 //prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
 
 
-/*void jogador (Jogo a) {
+Jogo jogada (Jogo b, Jogo c) {
 		
-	scanf("\n%c", &a.comando);
+	int l = 1;
 	
-	int x = 0, y = 0;
 	
-	if(a.tab[x][y] != a.tab[x-1][y-1]) 	
+	if(c.tab[0][0] == c.tab[0][l]) {
+		
+		c.tab[0][l] = b.comando;
+		
+		l++;		
+	}
 	
+	l = 1;
+	
+	if(c.tab[0][0] == c.tab[l][0]) {
+		
+		c.tab[l][0] = b.comando;
+		
+		l++;		
+	}
+	
+	c.tab[0][0] = b.comando;
+	
+	;
+		
+	return c;
+	
+}	
 	//testa a linha toda e a coluna toda contanto que a anterior tenha passado no teste
-}*/
+
 
 
 
 int main () {
 	
-	Jogo dados = novoTabuleiro();
+	Jogo tabela = novoTabuleiro();
 	
-	/*typedef enum {
-		VERMELHO,
-		AZUL,
-		AMARELO,
-		VERDE,
-		ROSA,
-		ROXO
-	};*/
+	Jogo geral = {0, 0, 0, 0};
+	
+	
+	imprime(tabela);
+	
+	
+	while(geral.contador <= 25) {
 		
-	imprime(dados);
-	
 	printf("\n\t\t\tDigite um número de 0 a 5\n");
 		
-	jogador(dados);
+	scanf("\n%i", &geral.comando);
 	
+	Jogo novo = jogada(geral, tabela);
+	
+	imprime(novo);
+	
+	geral.contador++;
+	}
 	
 	return 0;
 }
