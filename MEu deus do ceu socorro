@@ -9,16 +9,17 @@ typedef struct {
 	
 	int i;
 	int j;
+	int tab[TAM][TAM];
 	
 } Param;
 
-void tabuleiro (Param a, int v[TAM][TAM]) {
+void tabuleiro (Param a) {
 
 	srand( (unsigned)time(NULL) );
 
 	for(a.i = 0; a.i < TAM; a.i++) {
 		for(a.j = 0; a.j < TAM; a.j++) {
-			v[a.i][a.j] = rand() % COR;
+			a.tab[a.i][a.j] = rand() % COR;
 		}
 	}
 	
@@ -26,13 +27,13 @@ void tabuleiro (Param a, int v[TAM][TAM]) {
 
 }
 
-void imprime (Param a, int v[TAM][TAM]) {
+void imprime (Param a) {
 
 
 
 	for(a.i = 0; a.i < TAM; a.i++) {
 		for(a.j = 0; a.j < TAM; a.j++) {
-			printf("%i ", v[a.i][a.j]);
+			printf("%i ", a.tab[a.i][a.j]);
 		}
 	printf("\n");
 	}
@@ -42,8 +43,6 @@ void imprime (Param a, int v[TAM][TAM]) {
 //prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its form
 
 int main () {
-	
-	int tab[TAM][TAM];
 	
 	Param valor = {0 , 0};	
 	
