@@ -12,13 +12,13 @@ typedef struct {
 	
 } Param;
 
-void tabuleiro (Param valores, int v[TAM][TAM]) {
+void tabuleiro (Param a, int v[TAM][TAM]) {
 
 	srand( (unsigned)time(NULL) );
 
-	for(valores.i = 0; valores.i < TAM; valores.i++) {
-		for(valores.j = 0; valores.j < TAM; valores.j++) {
-			v[valores.i][valores.j] = rand() % COR;
+	for(a.i = 0; a.i < TAM; a.i++) {
+		for(a.j = 0; a.j < TAM; a.j++) {
+			v[a.i][a.j] = rand() % COR;
 		}
 	}
 	
@@ -26,13 +26,13 @@ void tabuleiro (Param valores, int v[TAM][TAM]) {
 
 }
 
-void imprime (Param valores, int v[TAM][TAM]) {
+void imprime (Param a, int v[TAM][TAM]) {
 
 
 
-	for(valores.i = 0; valores.i < TAM; valores.i++) {
-		for(valores.j = 0; valores.j < TAM; valores.j++) {
-			printf("%i ", v[valores.i][valores.j]);
+	for(a.i = 0; a.i < TAM; a.i++) {
+		for(a.j = 0; a.j < TAM; a.j++) {
+			printf("%i ", v[a.i][a.j]);
 		}
 	printf("\n");
 	}
