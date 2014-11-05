@@ -1,6 +1,7 @@
 ProjetoPTP
 ==========
-Project started 13.10.2014
+13.10.2014
+Project started
 
 ==========
 
