@@ -4,7 +4,12 @@
 
 #define TAM 14
 #define COR 6
-#define TENT 5
+#define TENT 3
+
+//TAM corresponds to the size of the matrix, assuming it has the same number of lines and columns
+//COR determines the set of values used to populate the matrix, ranging from 0 to COR -1
+//TENT measures the number of plays allowed before the game ends
+
 
 typedef struct {
     
@@ -16,7 +21,7 @@ typedef struct {
 } Jogo;
 
 Jogo novoTabuleiro() {
-	Jogo a = {0, 0, 0};
+	Jogo a = {0, 0, 1};
 	
 	srand( (unsigned)time(NULL) );
 
@@ -54,6 +59,8 @@ void imprime (Jogo a) {
 Jogo jogada (Jogo a, Jogo b) {
 	
     //Ideia: comparar os elementos em base com os em copia para alterar o tabuleiro sem medo
+    
+    //Problema: depois que a primeira linha e a primeira coluna inteira são preenchidas, a subrotina não atualiza mais a coluna após um certo elemento.
 	
 	printf("\n\t\t\t Digite um valor de 0 a 5\n");
 	
@@ -63,11 +70,17 @@ Jogo jogada (Jogo a, Jogo b) {
 	
     b.tab[0][0] = a.comando;
     
-    if(a.contador == TENT) {
+    if(b.contador == TENT) {
     
+        imprime(b);
+        
+        printf("\n\n\t\t\t\t   FIM");
+        
         return b;
     
     }
+    
+     b.contador++;
     
     //altera o primeiro elemento de acordo com o input
     
@@ -115,8 +128,6 @@ Jogo jogada (Jogo a, Jogo b) {
     
     //passa a versão modificada para um registro novo, que vai servir como base para a próxima alteração
     
-    a.contador++;
-    
     jogada(c, b);
 	
 }	
@@ -134,12 +145,7 @@ int main () {
     
     Jogo copia = base;
     
-    base.contador = 1;
-    
     jogada(base, copia);
-		
-	imprime(copia);
-	
 
 	
 	return 0;
