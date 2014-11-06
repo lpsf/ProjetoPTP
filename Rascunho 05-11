@@ -1,0 +1,139 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAM 14
+#define COR 6
+#define TENT 5
+
+typedef struct {
+    
+	int i;
+	int j;
+    int contador;
+	int tab[TAM][TAM];
+	int comando;
+} Jogo;
+
+Jogo novoTabuleiro() {
+	Jogo a = {0, 0, 0};
+	
+	srand( (unsigned)time(NULL) );
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+		for(a.j = 0; a.j < TAM; a.j++) {
+			a.tab[a.i][a.j] = rand() % COR;
+		}
+	}
+	return a;
+	
+//generates random numbers in the [0,5] interval and sets them to each position in the matrix
+
+}
+
+void imprime (Jogo a) {
+
+	printf("\t\t\t*=*=*=*=*FLOOD IT!*=*=*=*=*\n\n");
+
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+		
+		printf("\t\t\t");
+		
+		for(a.j = 0; a.j < TAM; a.j++) {
+			printf("%i ", a.tab[a.i][a.j]);
+		}
+	printf("\n");
+	}
+}
+
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
+
+
+
+Jogo jogada (Jogo a, Jogo b) {
+	
+    //Ideia: comparar os elementos em base com os em copia para alterar o tabuleiro sem medo
+	
+	printf("\n\t\t\t Digite um valor de 0 a 5\n");
+	
+	scanf("%i", &a.comando);
+	
+	//recebe o valor a ser aplicado no elemento do ponto inicial (armazena no registro base por praticidade, mas poderia ser armazenado na copia sem problemas)
+	
+    b.tab[0][0] = a.comando;
+    
+    if(a.contador == TENT) {
+    
+        return b;
+    
+    }
+    
+    //altera o primeiro elemento de acordo com o input
+    
+	for(b.j = 1; b.j <= TAM; b.j++) {
+	
+			if(a.tab[0][0] == b.tab[0][b.j]) {
+		
+				b.tab[0][b.j] = a.comando;
+			
+			}
+            
+        //se o elemento inicial for igual ao da sua direita, o da direita será alterado
+	
+		}
+		
+	//testa todos os elementos a direita do ponto inicial
+	
+    for(b.i = 1; b.i <= TAM; b.i++) {
+    
+			if(a.tab[0][0] == b.tab[b.i][0]) {
+		
+				b.tab[b.i][0] = a.comando;
+			
+			}
+            
+        //se o elemento inicial for igual ao abaixo dele, o de baixo será alterado
+	
+		}
+		
+	//testa todos os elementos abaixo do ponto inicial
+    
+    imprime(b);
+    
+    Jogo c = b;
+    
+    //passa a versão modificada para um registro novo, que vai servir como base para a próxima alteração
+    
+    a.contador++;
+    
+    jogada(c, b);
+	
+	
+	
+	
+}	
+
+
+   
+
+
+int main () {
+	
+	Jogo base = novoTabuleiro();
+	
+	
+	imprime(base);
+    
+    Jogo copia = base;
+    
+    base.contador = 1;
+    
+    jogada(base, copia);
+		
+	imprime(copia);
+	
+
+	
+	return 0;
+}
