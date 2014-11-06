@@ -51,3 +51,11 @@ Had the idea to create a copy of the board being analyzed and alter the copy so 
 Started trying to apply the idea above to the subroutine that alters the board after receiving user input
 
 (Luiz)
+
+Managed to alter the "jogada" subroutine to recursively alter the values in accordance to the game parameters, albeit only on the first line and first column. Closer inspection revealed that after the entire line and column is filled, the routine stops altering the column a few lines down.
+
+(Luiz)
+
+Implementend the "limited number of plays" element effectively
+
+(Luiz)
