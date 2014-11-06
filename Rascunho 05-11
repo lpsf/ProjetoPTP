@@ -78,8 +78,13 @@ Jogo jogada (Jogo a, Jogo b) {
 				b.tab[0][b.j] = a.comando;
 			
 			}
+			
+			else {
+				
+				break;
+			}
             
-        //se o elemento inicial for igual ao da sua direita, o da direita será alterado
+        //se o elemento inicial for igual ao da sua direita, o da direita será alterado, caso contrario encerra os testes
 	
 		}
 		
@@ -92,8 +97,13 @@ Jogo jogada (Jogo a, Jogo b) {
 				b.tab[b.i][0] = a.comando;
 			
 			}
+			
+            else {
+				
+				break;
+			}
             
-        //se o elemento inicial for igual ao abaixo dele, o de baixo será alterado
+        //se o elemento inicial for igual ao abaixo dele, o de baixo será alterado, caso contrario etc etc
 	
 		}
 		
@@ -108,9 +118,6 @@ Jogo jogada (Jogo a, Jogo b) {
     a.contador++;
     
     jogada(c, b);
-	
-	
-	
 	
 }	
 
