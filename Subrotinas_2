@@ -1,3 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAM 14
+#define COR 6
+#define TENT 50
+
+//TAM corresponds to the size of the matrix, assuming it has the same number of lines and columns
+//COR determines the set of values used to populate the matrix, ranging from 0 to COR -1
+//TENT counts the number of plays allowed before the game ends
+
+
+
 Jogo novoTabuleiro() {
 	Jogo a = {0, 0, 1};
 
