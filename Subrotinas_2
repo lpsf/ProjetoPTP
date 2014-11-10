@@ -1,0 +1,98 @@
+Jogo novoTabuleiro() {
+	Jogo a = {0, 0, 1};
+
+	srand( (unsigned)time(NULL) );
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+		for(a.j = 0; a.j < TAM; a.j++) {
+			a.tab[a.i][a.j] = rand() % COR;
+		}
+	}
+	return a;
+
+//generates random numbers in the [0,5] interval and sets them to each position in the matrix
+
+}
+
+void imprime (Jogo x) {
+
+	printf("\t\t\t*=*=*=*=*FLOOD IT!*=*=*=*=*\n\n");
+
+
+	for(x.i = 0; x.i < TAM; x.i++) {
+
+		printf("\t\t\t");
+
+		for(x.j = 0; x.j < TAM; x.j++) {
+			printf("%i ", x.tab[x.i][x.j]);
+		}
+	printf("\n");
+	}
+}
+
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
+
+
+
+
+void jogada (Jogo a, Jogo b) {
+
+    //Ideia: comparar os elementos em base (a) com os em copia (b) para alterar o tabuleiro sem medo
+
+	printf("\n\t\t\t Digite um valor de 0 a 5\n");
+
+	scanf("%i", &a.comando);
+
+	//recebe o valor a ser aplicado no elemento do ponto inicial (armazena no registro base por praticidade, mas poderia ser armazenado na copia sem problemas)
+	
+	/** b.tab[0][0] = a.comando;
+    
+    //altera o primeiro elemento de acordo com o input */
+    
+	for(b.i = 0; b.i < TAM; b.i++){
+		
+		//analisa cada linha
+		
+		
+		
+		for(b.j = 0; b.j < TAM; b.j++) {
+			
+			if(b.tab[b.i+1][b.j] == a.tab[0][0]){
+				
+				printf("if da próxima linha\n");
+
+				b.tab[b.i+1][b.j] = a.comando;
+
+			}
+			
+			if(b.tab[b.i][b.j] == a.tab[0][0]){
+				
+				
+
+				b.tab[b.i][b.j] = a.comando;
+				
+			}
+						
+			
+			
+			if(b.tab[b.i][b.j+1] != a.tab[0][0]) {
+			
+				break;
+		
+			//para de analisar os elementos caso o próximo não seja alterável
+			
+			} 
+		}
+	}
+	
+	printf("terminou o primeiro for\n");
+
+    imprime(b);
+	
+	Jogo c = b;
+
+    jogada(c, b);
+
+}
+
+//Ideia: avisar o jogador se ele colocar um comando igual a cor atual
