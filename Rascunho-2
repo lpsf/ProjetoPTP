@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAM 14
+#define COR 6
+#define TENT 50
+
+//TAM corresponds to the size of the matrix, assuming it has the same number of lines and columns
+//COR determines the set of values used to populate the matrix, ranging from 0 to COR -1
+//TENT measures the number of plays allowed before the game ends
+
+
+typedef struct {
+
+    int i;
+	int j;
+    int contador;
+	int tab[TAM][TAM];
+	int comando;
+
+} Jogo;
+
+Jogo novoTabuleiro() {
+	Jogo a = {0, 0, 1};
+
+	srand( (unsigned)time(NULL) );
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+		for(a.j = 0; a.j < TAM; a.j++) {
+			a.tab[a.i][a.j] = rand() % COR;
+		}
+	}
+	return a;
+
+//generates random numbers in the [0,5] interval and sets them to each position in the matrix
+
+}
+
+void imprime (Jogo a) {
+
+	printf("\t\t\t*=*=*=*=*FLOOD IT!*=*=*=*=*\n\n");
+
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+
+		printf("\t\t\t");
+
+		for(a.j = 0; a.j < TAM; a.j++) {
+			printf("%i ", a.tab[a.i][a.j]);
+		}
+	printf("\n");
+	}
+}
+
+//prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
+
+
+
+
+void jogada (Jogo a, Jogo b) {
+
+    //Ideia: comparar os elementos em base com os em copia para alterar o tabuleiro sem medo
+
+	printf("\n\t\t\t Digite um valor de 0 a 5\n");
+
+	scanf("%i", &a.comando);
+
+	//recebe o valor a ser aplicado no elemento do ponto inicial (armazena no registro base por praticidade, mas poderia ser armazenado na copia sem problemas)
+
+    a.i = 0;
+    a.j = 0;
+
+    while(a.tab[a.i+1][a.j] == a.tab[0][0] || a.tab[a.i][a.j+1] == a.tab[0][0]) {
+
+    if(a.tab[a.i+1][a.j] == a.tab[0][0]){
+
+        a.tab[a.i+1][a.j] = a.comando;
+
+
+
+    }
+
+
+    if(a.tab[a.i][a.j+1] == a.tab[0][0]){
+
+        a.tab[a.i][a.j+1] = a.comando;
+
+
+    }
+
+    a.i++;
+    a.j++;
+}
+    a.tab[0][0] = a.comando;
+
+    //altera o primeiro elemento de acordo com o input
+
+	/** if(b.contador == TENT) {
+
+        imprime(c);
+
+        printf("\n\n\t\t\t\t   FIM\n\n");
+
+    }
+
+   b.contador++; */
+
+    imprime(a);
+
+
+    jogada(a, b);
+
+}
+
+//Ideia: avisar o jogador se ele colocar um comando igual a cor atual
+
+
+
+int main () {
+
+	Jogo base = novoTabuleiro();
+
+
+	imprime(base);
+
+    Jogo copia = base;
+
+    jogada(base,copia);
+
+
+	return 0;
+}
