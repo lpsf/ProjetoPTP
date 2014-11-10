@@ -1,0 +1,14 @@
+int main () {
+
+	Jogo base = novoTabuleiro();
+
+
+	imprime(base);
+
+    Jogo copia = base;
+
+    jogada(base, copia);
+
+
+	return 0;
+}
