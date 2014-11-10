@@ -1,0 +1,11 @@
+if(b.tab[b.i-1][b.j] == a.tab[0][0] || b.tab[b.i][b.j-1] == a.tab[0][0] || b.tab[b.i+1][b.j] == a.tab[0][0] || b.tab[b.i][b.j+1] == a.tab[0][0]) {
+
+  b.tab[b.i][b.j] = a.comando;
+}
+
+analisar todos os elementos da matriz (usa um for pra colunas dentro de um for pra linhas) e aplicar o código acima se o elemento analizado:
+
+i) for igual a origem
+ii) for igual ao anterior (seja à esquerda ou acima)
+
+interroper o loop das colunas caso o critério seja descumprido
