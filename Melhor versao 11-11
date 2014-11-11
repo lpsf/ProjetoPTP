@@ -18,6 +18,7 @@ typedef struct {
     int contador;
 	int tab[TAM][TAM];
 	int comando;
+	int *alt;
 } Jogo;
 
 Jogo novoTabuleiro() {
@@ -74,7 +75,7 @@ void jogada (Jogo a, Jogo b) {
     
         imprime(b);
         
-        printf("\n\n\t\t\t\t   FIM\n");
+        printf("\n\n\t\t\t\t   FIM\n\n");
         
     
     }
@@ -83,7 +84,8 @@ void jogada (Jogo a, Jogo b) {
     
     //altera o primeiro elemento de acordo com o input
     
-	for(b.j = 1; b.j <= TAM; b.j++) {
+    for(b.i = 1; b.i <= TAM; b.i++) {
+		for(b.j = 1; b.j <= TAM; b.j++) {
 	
 			if(a.tab[0][0] == b.tab[0][b.j]) {
 		
@@ -101,9 +103,7 @@ void jogada (Jogo a, Jogo b) {
 		}
 		
 	//testa todos os elementos a direita do ponto inicial
-	
-    for(b.i = 1; b.i <= TAM; b.i++) {
-    
+
 			if(a.tab[0][0] == b.tab[b.i][0]) {
 		
 				b.tab[b.i][0] = a.comando;
@@ -120,6 +120,7 @@ void jogada (Jogo a, Jogo b) {
 		}
 		
 	//testa todos os elementos abaixo do ponto inicial
+    
     
     imprime(b);
     
@@ -143,6 +144,7 @@ int main () {
 	imprime(base);
     
     Jogo copia = base;
+    
     
     jogada(base, copia);
 
