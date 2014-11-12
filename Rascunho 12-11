@@ -56,65 +56,71 @@ void imprime (Jogo a) {
 //prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
 
 
-Jogo analisar(Jogo a, Jogo b) {
+Jogo analisar(Jogo a, Jogo b, int i, int j) {
+	
+    //Problema: a subrotina "lê" os elementos com sucesso mas não altera além dos primeiros;
     
-    if(b.tab[b.i-1][b.j] == a.tab[0][0]) {
+    printf("Analisando agora elemento [%i, %i]\n", i, j);
+	
+	if(b.tab[i+1][j] == a.tab[i][j]) {
         
-        b.tab[b.i-1][b.j] = a.comando;
+        printf("O de baixo é igual\n");
+         
+        b.tab[i+1][j] = a.comando;
         
-        b.i--;
-        
-        analisar(a, b);
+        analisar(a, b, i+1, j);
         
     }
     
-    b.i = 1;
+  
     
-    if(b.tab[b.i][b.j-1] == a.tab[0][0]) {
+   if(b.tab[i][j+1] == a.tab[i][j]) {
+	   
+	   printf("O da direita é igual\n");		
+		
+        b.tab[i][j+1] = a.comando;
         
-         b.tab[b.i][b.j-1] = a.comando;
+        b.contador++;
         
-        b.j--;
+        analisar(a, b, i, j+1);
         
-        analisar(a, b);
+        
+    } 
+
+    
+   if(i > 0 && j > 0 && b.tab[i-1][j] == a.tab[i][j]) {
+        
+         printf("O de cima é igual\n");
+       
+        b.tab[i-1][j] = a.comando;
+               
+        analisar(a, b, i-1, j);
         
     }
     
-    b.j = 1;
+	
     
-    if(b.tab[b.i+1][b.j] == a.tab[0][0]) {
+    if(i > 0 && j > 0 && b.tab[i][j-1] == a.tab[i][j]) {
         
-        b.tab[b.i+1][b.j] = a.comando;
+         printf("O da esquerda é igual\n");
         
-        b.i--;
+        b.tab[i][j-1] = a.comando;
         
-        analisar(a, b);
+        analisar(a, b, i, j-1);
         
-    }
-    
-    b.i = 1;
-    
-    if(b.tab[b.i][b.j+1] == a.tab[0][0]) {
-        
-         b.tab[b.i][b.j+1] = a.comando;
-        
-        b.j--;
-        
-        analisar(a, b);
-        
-    }
-    
-    b.j = 1;
-    
+    } 
+	
+	if (b.tab[i-1][j] != a.tab[i][j] && b.tab[i][j-1] != a.tab[i][j] && b.tab[i+1][j] != a.tab[i][j] && b.tab[i][j+1] != a.tab[i][j]) {
+      
     return b;
     
+	}
 }
 
 void jogada (Jogo a, Jogo b) {
 	
     //Ideia: comparar os elementos em base com os em copia para alterar o tabuleiro sem medo
     
-    //Problema: depois que a primeira linha e a primeira coluna inteira são preenchidas, a subrotina não atualiza mais a coluna após um certo elemento.
 	
 	printf("\n\t\t\t Digite um valor de 0 a 5\n\n\n");
 	
@@ -125,16 +131,19 @@ void jogada (Jogo a, Jogo b) {
     b.tab[0][0] = a.comando;
     
     //altera o primeiro elemento de acordo com o input
+    
+    b.i = 0;
+    b.j = 0;    
 
-    Jogo c = analisar(a, b);
+    Jogo mod = analisar(a, b, b.i, b.j);
    
    //passa a versão modificada para um registro novo, que vai servir como base para a próxima alteração
     
-    imprime(c);
+   imprime(mod);
     
-    b = c;    
+    b = mod;    
     
-    jogada(c, b);
+    jogada(mod, b);
 	
 }	
 
@@ -151,8 +160,8 @@ int main () {
     
     Jogo copia = base;
     
-    copia.i = 1;
-    copia.j = 1;
+    
+    copia.contador = 1;
     
     jogada(base, copia);
 
