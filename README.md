@@ -59,3 +59,19 @@ Managed to alter the "jogada" subroutine to recursively alter the values in acco
 Implementend the "limited number of plays" element effectively
 
 (Luiz)
+
+=======
+
+10.11.2014
+
+Tried to change the subroutine so it would update the board appropriately, but with no success. Removed the "number of plays" element since it wasn't necessary at the moment.
+
+(Together)
+
+======
+
+12.11.2014
+
+Managed to create a subroutine ("analisar") that alters the board correctly, but something in the "jogada" function isn printing the board correctly after one play.
+
+(Luiz)
