@@ -59,7 +59,12 @@ void imprime (Jogo a) {
 
 void analisar(Jogo a, Jogo *b, int i, int j) {
 	
-
+	if (b->tab[i][j-1] == a.tab[i][j] && b->tab[i-1][j] == a.tab[i][j] && b->tab[i+1][j] != a.tab[i][j] && b->tab[i][j+1] != a.tab[i][j]) {
+	
+		return 1;
+    
+  
+	}
 	
 	if(b->tab[i+1][j] == a.tab[i][j]) {
         
