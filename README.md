@@ -75,3 +75,11 @@ Tried to change the subroutine so it would update the board appropriately, but w
 Managed to create a subroutine ("analisar") that alters the board correctly, but something in the "jogada" function isn printing the board correctly after one play.
 
 (Luiz)
+
+=====
+
+17.11.2014
+
+Got the game to play correctly by using a pointer in the "analisar" subroutine. However, the program is getting core dumped when the game gets close to ending.
+
+(Luiz)
