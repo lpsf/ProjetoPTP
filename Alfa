@@ -17,14 +17,15 @@ typedef struct {
 	int j;
     int contador;
 	int tab[TAM][TAM];
-	int comando;
-} Jogo;
+	int command;
+} Game;
 
-Jogo novoTabuleiro() {
+
+Game newBoard() {
 	
 	//Generates random numbers in the [0,5] interval and sets them to each position in the matrix
 	
-	Jogo a = {0, 0};
+	Game a = {0, 0};
 	
 	srand( (unsigned)time(NULL) );
 
@@ -39,7 +40,24 @@ Jogo novoTabuleiro() {
 
 }
 
-void imprime (Jogo a) {
+void save(Game a) {
+	FILE *flood = fopen ("floodit.txt", "w");
+	
+		
+	
+		for(a.i = 0; a.i < TAM; a.i++) {
+		
+			for(a.j = 0; a.j < TAM; a.j++) {
+				fprintf(flood, "%i ", a.tab[a.i][a.j]);
+			}
+			fprintf(flood,"\n");
+		}
+		
+	fclose(flood);
+
+}
+
+void print (Game a) {
 
 	//Prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
 
@@ -62,16 +80,16 @@ void imprime (Jogo a) {
 
 
 
-void analisar(Jogo a, Jogo *b, int i, int j) {
+void change(Game a, Game *b, int i, int j) {
 	
 	//Compares the a and b board and alters the elements on the b board so long as they are equal to an element in their vicinity, starting from the [0][0] point
 	
 	if(b->tab[i+1][j] == a.tab[i][j]) {
         
         
-        b->tab[i+1][j] = a.comando;
+        b->tab[i+1][j] = a.command;
         
-        analisar(a, b, i+1, j);
+        change(a, b, i+1, j);
         
     }
     
@@ -80,9 +98,9 @@ void analisar(Jogo a, Jogo *b, int i, int j) {
    if(b->tab[i][j+1] == a.tab[i][j]) {
 	   
 	   
-        b->tab[i][j+1] = a.comando;
+        b->tab[i][j+1] = a.command;
         
-        analisar(a, b, i, j+1);
+        change(a, b, i, j+1);
         
         
     } 
@@ -91,9 +109,9 @@ void analisar(Jogo a, Jogo *b, int i, int j) {
    if(i > 0 && j > 0 && b->tab[i-1][j] == a.tab[i][j]) {
         
        
-        b->tab[i-1][j] = a.comando;
+        b->tab[i-1][j] = a.command;
                
-        analisar(a, b, i-1, j);
+        change(a, b, i-1, j);
         
     }
     
@@ -102,22 +120,22 @@ void analisar(Jogo a, Jogo *b, int i, int j) {
     if(i > 0 && j > 0 && b->tab[i][j-1] == a.tab[i][j]) {
         
                 
-        b->tab[i][j-1] = a.comando;
+        b->tab[i][j-1] = a.command;
         
-        analisar(a, b, i, j-1);
+        change(a, b, i, j-1);
         
     } 
     
 }
 
-void jogada (Jogo a, Jogo b) {
+void play (Game a, Game b) {
 	
 	//Uses two identical boards in order to easily alter the b board by comparing it to the a board later on
     
      if(b.contador == TENT) {
 		 
 		 
-		imprime(b);
+		print(b);
 		
 		printf("\n\n\t\t\t\t FIM");
 	}
@@ -128,9 +146,9 @@ void jogada (Jogo a, Jogo b) {
 	
 	printf("\t\t\t Digite um valor de 0 a 5\n\n\n");
 	
-	scanf("%i", &a.comando);
+	scanf("%i", &a.command);
 	
-	//Stores the user input in the "comando" variable (we chose to store it in the "comando" variable inside the a struct, but the other one could've been use without issue
+	//Stores the user input in the "command" variable (we chose to store it in the "command" variable inside the a struct, but the other one could've been use without issue
 	
 	
 	b.contador++;
@@ -138,7 +156,7 @@ void jogada (Jogo a, Jogo b) {
 	//Counts the number of times the user inputs a number
 	
     
-    b.tab[0][0] = a.comando;
+    b.tab[0][0] = a.command;
     
     //Alters the first element according to the input received, so long as it is a number
     
@@ -146,21 +164,23 @@ void jogada (Jogo a, Jogo b) {
     b.i = 0;
     b.j = 0;    
     
-    //Sets the starting i and j parameters to 0 so the "analisar" subroutine can run properly
+    //Sets the starting i and j parameters to 0 so the "change" subroutine can run properly
 
 	
-	analisar(a, &b, b.i, b.j);
+	change(a, &b, b.i, b.j);
 	
 	
-	imprime(b);
+	print(b);
 	
 	
 	a = b;       
 	
 	//Copies the altered board so it can serve as the base for the next input cycle
     
+    save(a);
     
-    jogada(a, b);
+    
+    play(a, b);
     
 	}
 	
@@ -172,16 +192,17 @@ void jogada (Jogo a, Jogo b) {
 
 int main () {
 	
-	Jogo base = novoTabuleiro();
+	Game base = newBoard();
 	
+	save(base);
+		
+	print(base);
 	
-	imprime(base);
-	
-	Jogo copia = base;
+	Game copia = base;
 	
 	copia.contador = 0;
     
-    jogada(base, copia);
+    play(base, copia);
 
 	
 	return 0;
