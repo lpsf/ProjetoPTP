@@ -15,7 +15,7 @@ typedef struct {
     
     int i;
 	int j;
-    int contador;
+    int count;
 	int tab[TAM][TAM];
 	int command;
 } Game;
@@ -132,7 +132,7 @@ void play (Game a, Game b) {
 	
 	//Uses two identical boards in order to easily alter the b board by comparing it to the a board later on
     
-     if(b.contador == TENT) {
+     if(b.count == TENT) {
 		 
 		 
 		print(b);
@@ -142,7 +142,7 @@ void play (Game a, Game b) {
 	
 	else {
 	
-	printf("\t\t\t %i jogadas restantes\n\n", TENT - b.contador);
+	printf("\t\t\t %i jogadas restantes\n\n", TENT - b.count);
 	
 	printf("\t\t\t Digite um valor de 0 a 5\n\n\n");
 	
@@ -151,7 +151,7 @@ void play (Game a, Game b) {
 	//Stores the user input in the "command" variable (we chose to store it in the "command" variable inside the a struct, but the other one could've been use without issue
 	
 	
-	b.contador++;
+	b.count++;
 	
 	//Counts the number of times the user inputs a number
 	
@@ -200,7 +200,7 @@ int main () {
 	
 	Game copia = base;
 	
-	copia.contador = 0;
+	copia.count = 0;
     
     play(base, copia);
 
