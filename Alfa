@@ -1,0 +1,188 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAM 15
+#define COR 6
+#define TENT 50
+
+//TAM corresponds to the size of the matrix, assuming it has the same number of lines and columns
+//COR determines the set of values used to populate the matrix, ranging from 0 to COR -1
+//TENT measures the number of plays allowed before the game ends
+
+
+typedef struct {
+    
+    int i;
+	int j;
+    int contador;
+	int tab[TAM][TAM];
+	int comando;
+} Jogo;
+
+Jogo novoTabuleiro() {
+	
+	//Generates random numbers in the [0,5] interval and sets them to each position in the matrix
+	
+	Jogo a = {0, 0};
+	
+	srand( (unsigned)time(NULL) );
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+		for(a.j = 0; a.j < TAM; a.j++) {
+			a.tab[a.i][a.j] = rand() % COR;
+		}
+	}
+	return a;
+	
+
+
+}
+
+void imprime (Jogo a) {
+
+	//Prints each element to the screen and then, when i's value increases, prints a line break to give the matrix its shape
+
+	printf("\t\t\t*=*=*=*=*FLOOD IT!*=*=*=*=*\n\n");
+
+
+	for(a.i = 0; a.i < TAM; a.i++) {
+		
+		printf("\t\t\t");
+		
+		for(a.j = 0; a.j < TAM; a.j++) {
+			printf("%i ", a.tab[a.i][a.j]);
+		}
+	printf("\n");
+	}
+	printf("\n");
+}
+
+
+
+
+
+void analisar(Jogo a, Jogo *b, int i, int j) {
+	
+	//Compares the a and b board and alters the elements on the b board so long as they are equal to an element in their vicinity, starting from the [0][0] point
+	
+	if(b->tab[i+1][j] == a.tab[i][j]) {
+        
+        
+        b->tab[i+1][j] = a.comando;
+        
+        analisar(a, b, i+1, j);
+        
+    }
+    
+  
+    
+   if(b->tab[i][j+1] == a.tab[i][j]) {
+	   
+	   
+        b->tab[i][j+1] = a.comando;
+        
+        analisar(a, b, i, j+1);
+        
+        
+    } 
+
+    
+   if(i > 0 && j > 0 && b->tab[i-1][j] == a.tab[i][j]) {
+        
+       
+        b->tab[i-1][j] = a.comando;
+               
+        analisar(a, b, i-1, j);
+        
+    }
+    
+	
+    
+    if(i > 0 && j > 0 && b->tab[i][j-1] == a.tab[i][j]) {
+        
+                
+        b->tab[i][j-1] = a.comando;
+        
+        analisar(a, b, i, j-1);
+        
+    } 
+    
+}
+
+void jogada (Jogo a, Jogo b) {
+	
+	//Uses two identical boards in order to easily alter the b board by comparing it to the a board later on
+    
+     if(b.contador == TENT) {
+		 
+		 
+		imprime(b);
+		
+		printf("\n\n\t\t\t\t FIM");
+	}
+	
+	else {
+	
+	printf("\t\t\t %i jogadas restantes\n\n", TENT - b.contador);
+	
+	printf("\t\t\t Digite um valor de 0 a 5\n\n\n");
+	
+	scanf("%i", &a.comando);
+	
+	//Stores the user input in the "comando" variable (we chose to store it in the "comando" variable inside the a struct, but the other one could've been use without issue
+	
+	
+	b.contador++;
+	
+	//Counts the number of times the user inputs a number
+	
+    
+    b.tab[0][0] = a.comando;
+    
+    //Alters the first element according to the input received, so long as it is a number
+    
+   
+    b.i = 0;
+    b.j = 0;    
+    
+    //Sets the starting i and j parameters to 0 so the "analisar" subroutine can run properly
+
+	
+	analisar(a, &b, b.i, b.j);
+	
+	
+	imprime(b);
+	
+	
+	a = b;       
+	
+	//Copies the altered board so it can serve as the base for the next input cycle
+    
+    
+    jogada(a, b);
+    
+	}
+	
+}	
+
+
+   
+
+
+int main () {
+	
+	Jogo base = novoTabuleiro();
+	
+	
+	imprime(base);
+	
+	Jogo copia = base;
+	
+	copia.contador = 0;
+    
+    jogada(base, copia);
+
+	
+	return 0;
+}
