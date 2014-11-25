@@ -1,4 +1,7 @@
 ProjetoPTP
+
+Project timeline:
+
 ==========
 13.10.2014
 
@@ -22,7 +25,7 @@ Started modularization
 
 (Together)
 
-=========
+==========
 
 03.11.2014
 
@@ -30,7 +33,7 @@ Tweaked with the code to optimize performance
 
 (Together)
 
-=========
+==========
 
 04.11.2014
 
@@ -40,7 +43,7 @@ Created code for linear update of the game board, still trying to work out recur
 
 (Together)
 
-=========
+==========
 
 05.11.2014
 
@@ -60,7 +63,7 @@ Implementend the "limited number of plays" element effectively
 
 (Bruna)
 
-=======
+==========
 
 10.11.2014
 
@@ -68,7 +71,7 @@ Tried to change the subroutine so it would update the board appropriately, but w
 
 (Together)
 
-======
+==========
 
 12.11.2014
 
@@ -76,10 +79,26 @@ Managed to create a subroutine ("analisar") that alters the board correctly, but
 
 (Luiz)
 
-=====
+==========
 
 17.11.2014
 
 Got the game to play correctly by using a pointer in the "analisar" subroutine. However, the program is getting core dumped when the game gets close to ending.
 
 (Luiz)
+
+==========
+
+24.11.2014
+
+Implemented the different types of commands and got the game to play to a limited number of tries, althought we couldn't find a way to end the game if the user floods the board
+
+(Together)
+
+==========
+
+25.11.2014
+
+Managed to get the game to end once the player has completely filled the board, and anotated the entire code.
+
+(Together)
